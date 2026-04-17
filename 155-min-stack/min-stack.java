@@ -1,27 +1,44 @@
 class MinStack {
-private Deque<Integer> stack;
-private Deque<Integer> minStack;
+ListNode head;
+int min;
     public MinStack() {
-        stack=new ArrayDeque<>();
-        minStack=new ArrayDeque<>();
+        min=Integer.MAX_VALUE;
+        head=null;
     }
     
     public void push(int val) {
-        stack.offerLast(val);
-        if(minStack.isEmpty()||val<=minStack.peekLast()) minStack.offerLast(val);
+        if(min>val){
+            min=val;
+        }
+        head=new ListNode(head,val,min);
     }
     
     public void pop() {
-        if(stack.peekLast().equals(minStack.peekLast())) minStack.pollLast();
-        stack.pollLast();
+        head = head.next;
+        if(head == null){min = Integer.MAX_VALUE;}
+        else {min = head.currentMin;}
     }
     
     public int top() {
-        return stack.peekLast();
+        return head.val;
     }
     
     public int getMin() {
-        return minStack.peekLast();
+        return head.currentMin;
+    }
+}
+class ListNode{
+    ListNode next;
+    int currentMin;
+    int val;
+    public ListNode(){}
+    public ListNode(int val){
+        this.val=val;
+    }
+    public ListNode(ListNode next,int val,int currentMin){
+        this.next=next;
+        this.val=val;
+        this.currentMin=currentMin;
     }
 }
 
