@@ -8,9 +8,7 @@ class MinStack {
 
     public void push(int val) {
 
-        if(min > val){
-            min = val;
-        }
+        min=Math.min(min,val);
         head = new ListNode(val, min, head);
     }
 
