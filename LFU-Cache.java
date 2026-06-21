@@ -48,7 +48,7 @@
 48        bucket.addTail(node);
 49        fMap.put(1, bucket);
 50        nMap.put(key, node);
-51    }
+51    } 
 52
 53    private void updateFrequency(Node node) {
 54
