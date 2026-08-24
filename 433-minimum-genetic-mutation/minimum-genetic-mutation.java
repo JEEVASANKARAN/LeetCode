@@ -1,38 +1,33 @@
 class Solution {
-    public int minMutation(String startGene, String endGene, String[] bank) {
-        Set<String> allowed = new HashSet<>(Arrays.asList(bank));
-        Set<String> visited = new HashSet<>();
+    public int minMutation(String start, String end, String[] bank) {
+        Set<String> bankSet = new HashSet<>(Arrays.asList(bank));
+        if (!bankSet.contains(end)) return -1;
+        char[] genes = {'A','C','G','T'};
         Queue<String> q = new LinkedList<>();
-
-        q.add(startGene);
-        visited.add(startGene);
-
-        int turns = 0;
-        char[] choices = { 'A', 'C', 'G', 'T' };
-
+        q.offer(start);
+        Set<String> visited = new HashSet<>();
+        visited.add(start);
+        int steps = 0;
         while (!q.isEmpty()) {
             int size = q.size();
-
-            while (size-- > 0) {
+            for (int i = 0; i < size; i++) {
                 String curr = q.poll();
-                if (curr.equals(endGene)) return turns;
-
-                for (int i = 0; i < 8; i++) {
-                    for (char c : choices) {
-
-                        if (c == curr.charAt(i))continue;
-
-                        String strand = curr.substring(0, i) +c +curr.substring(i + 1);
-
-                        if (allowed.contains(strand) && !visited.contains(strand)) {
-
-                            visited.add(strand);
-                            q.add(strand);
+                if (curr.equals(end)) return steps;
+                char[] arr = curr.toCharArray();
+                for (int j = 0; j < 8; j++) {
+                    char old = arr[j];
+                    for (char g : genes) {
+                        arr[j] = g;
+                        String next = new String(arr);
+                        if (bankSet.contains(next) && !visited.contains(next)) {
+                            visited.add(next);
+                            q.offer(next);
                         }
                     }
+                    arr[j] = old;
                 }
             }
-            turns++;
+            steps++;
         }
         return -1;
     }
