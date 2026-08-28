@@ -2,14 +2,14 @@ class Solution {
     public int maximumCandies(int[] candies, long k) {
         if(candies==null || candies.length==0) return 0;
 
-        int max=0;
+        long max=0;
         for(int candy : candies) max=Math.max(candy,max);
 
-        int low=1;
-        int high=max;
-        int result=0;
+        long low=1;
+        long high=max;
+        long result=0;
         while(low <= high){
-            int mid = low + (high-low) /2;
+            long mid = low + (high-low) /2;
 
             if(isDis(candies,mid,k)){
                 result=mid;
@@ -18,9 +18,9 @@ class Solution {
                 high=mid-1;
             }
         }
-        return result;
+        return (int)result;
     }
-    public boolean isDis(int[] candies, int piles, long k){
+    public boolean isDis(int[] candies, long piles, long k){
         long totalCount=0;
 
         for(int candy : candies){
