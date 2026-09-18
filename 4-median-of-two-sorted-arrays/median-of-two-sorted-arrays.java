@@ -1,37 +1,36 @@
-class Solution {     
-    public double findMedianSortedArrays(int[] nums1, int[] nums2) {         
-        int[] res = sorted(nums1, nums2);         
-        
-        return res.length % 2 == 0 ? ((res[res.length / 2] + res[res.length / 2 - 1]) / 2.0) : res[res.length / 2];     
-    }     
+class Solution {
+    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        if(nums1.length>nums2.length){
+           return findMedianSortedArrays(nums2,nums1);
+        }
+        int m=nums1.length;
+        int n=nums2.length;
 
-    int[] sorted(int[] a, int[] b) {         
-        int[] res = new int[a.length + b.length];         
-        int k = 0;         
-        int i = 0;         
-        int j = 0;         
-        
+        int left=0;
+        int right=m;
+        while(left<=right){
+            int cut1=left+(right-left)/2;
+            int cut2=(m+n+1)/2-cut1;
 
-        while (i < a.length || j < b.length) {             
-            if (i < a.length && j < b.length) {
-                if (a[i] < b[j]) {
-                    res[k] = a[i];
-                    i++;
-                } else {
-                    res[k] = b[j];
-                    j++;
+            int l1=(cut1==0)?Integer.MIN_VALUE:nums1[cut1-1];
+            int r1=(cut1==m)?Integer.MAX_VALUE:nums1[cut1];
+
+            int l2=(cut2==0)?Integer.MIN_VALUE:nums2[cut2-1];
+            int r2=(cut2==n)?Integer.MAX_VALUE:nums2[cut2];
+
+            if(l1<=r2&&l2<=r1){
+                if((m+n)%2==1){
+                    return Math.max(l1,l2);
                 }
-            } 
-            else if (i < a.length) {
-                res[k] = a[i];
-                i++;
-            } 
-            else {
-                res[k] = b[j];
-                j++;
+                return (Math.max(l1,l2)+Math.min(r1,r2))/2.0;
             }
-            k++;         
-        }         
-        return res;     
-    } 
+            else if(l1>r2){
+                right=cut1-1;
+            }
+            else{
+                left=cut1+1;
+            }
+        }
+        return 0.0;
+    }
 }
