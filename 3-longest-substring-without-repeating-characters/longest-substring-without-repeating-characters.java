@@ -7,7 +7,7 @@ int max = 0;
 
 for(int right = 0; right < s.length(); right++){
 
-    char c = s.charAt(right);
+    char c = s.charAt(right); //specific character extraction
 
     if(map.containsKey(c)){
         left = Math.max(left, map.get(c) + 1);
