@@ -1,28 +1,29 @@
 class Solution {
     public String minRemoveToMakeValid(String s) {
-        StringBuffer pratik=new StringBuffer(s);
-        int c=0;
-        for(int i=0;i<pratik.length();i++){
-            if(pratik.charAt(i)=='('){
-                c++;
-            }
-            else if(pratik.charAt(i)==')'){
-                if(c==0){
-                    pratik.deleteCharAt(i);
+        int count = 0;
+        StringBuilder sb = new StringBuilder(s);
+
+        for( int i = 0; i < sb.length(); i++){
+            char c = sb.charAt(i);
+
+            if(c == '(') count++;
+
+            else if(c == ')'){
+                if(count > 0) count--;
+                else{
+                    sb.deleteCharAt(i);
                     i--;
                 }
-                else{
-                    c--;
-                }
-            } 
-        }
-          for (int i = pratik.length() - 1; i >= 0 && c > 0; i--) {
-            if(pratik.charAt(i)=='('){
-                pratik.deleteCharAt(i);
-                c--;
             }
         }
-        return pratik.toString();
+
+        for(int i = sb.length()-1; i >= 0 && count > 0; i--){
+            if(sb.charAt(i) == '('){
+                sb.deleteCharAt(i);
+                count--;
+            }
+        }
         
+        return sb.toString();
     }
 }
