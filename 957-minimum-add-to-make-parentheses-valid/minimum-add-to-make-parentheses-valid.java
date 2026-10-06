@@ -1,12 +1,12 @@
 class Solution {
     public int minAddToMakeValid(String s) {
-        int count  =0;
-        Deque<Character> dq = new ArrayDeque<>();
+        int open = 0;
+        int close = 0;
         for(char c : s.toCharArray()){
-            if(c == '(') dq.push('(');
-            else if(c == ')' && !dq.isEmpty()) dq.pop();
-            else count++;
+            if(c == '(') open++;
+            else if(c == ')' && open > 0) open--;
+            else close++;
         }
-        return dq.size() + count;
+        return open + close;
     }
 }
