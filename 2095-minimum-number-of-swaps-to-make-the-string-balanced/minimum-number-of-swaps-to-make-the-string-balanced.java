@@ -6,9 +6,8 @@ class Solution {
             if(c == '[') open++;
             else{
                 if(open > 0) open--;
-                else count++;
             }
         }
-        return (count+1)/2;
+        return (open+1)/2;
     }
 }
