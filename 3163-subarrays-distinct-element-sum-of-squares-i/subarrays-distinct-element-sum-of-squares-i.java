@@ -10,7 +10,7 @@ class Solution {
 
                 int val = seen.size();
 
-                res += Math.pow(val,2);
+                res += val * val;
             }
         }
         return res;
