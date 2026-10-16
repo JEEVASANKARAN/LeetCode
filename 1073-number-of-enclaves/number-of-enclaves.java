@@ -1,8 +1,10 @@
 class Solution {
     public int numEnclaves(int[][] grid) {
-        for(int i = 0; i < grid.length; i++){
-            for(int j = 0; j < grid[0].length; j++){
-                if(i == 0 || j == 0 || i == grid.length-1 || j == grid[0].length-1){
+        int m = grid.length;
+        int n = grid[0].length;
+        for(int i = 0; i < m; i++){
+            for(int j = 0; j < n; j++){
+                if(i == 0 || j == 0 || i == m-1 || j == n-1){
                     if(grid[i][j] == 1) dfs(grid,i,j);
                 }
             }
@@ -10,8 +12,8 @@ class Solution {
         
         int ans = 0;
 
-        for(int i = 0; i < grid.length; i++){
-            for(int j = 0; j < grid[0].length; j++){
+        for(int i = 0; i < m; i++){
+            for(int j = 0; j < n; j++){
                 ans += grid[i][j];
             }
         }
