@@ -5,7 +5,7 @@ class Solution {
         for(int i = 0; i < m; i++){
             for(int j = 0; j < n; j++){
                 if((i == 0 || j == 0 || i == m-1 || j == n-1) && grid[i][j] == 1){
-                    dfs(grid,i,j);
+                    dfs(grid,i,j,m,n);
                 }
             }
         }
@@ -19,15 +19,15 @@ class Solution {
         }
         return ans;
     }
-    public void dfs(int[][] grid, int r, int c){
-        if(r < 0 || r >= grid.length || c < 0 || c >= grid[0].length || grid[r][c] == 0) return;
+    public void dfs(int[][] grid, int r, int c, int m, int n){
+        if(r < 0 || r >= m || c < 0 || c >= n || grid[r][c] == 0) return;
 
         grid[r][c] = 0;
 
-        dfs(grid,r-1,c);
-        dfs(grid,r+1,c);
-        dfs(grid,r,c-1);
-        dfs(grid,r,c+1);
+        dfs(grid,r-1,c,m,n);
+        dfs(grid,r+1,c,m,n);
+        dfs(grid,r,c-1,m,n);
+        dfs(grid,r,c+1,m,n);
     }
 
 }
