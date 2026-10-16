@@ -1,52 +1,31 @@
 class Solution {
-    int[][] directions={
-        {-1,0},{1,0},
-        {0,-1},{0,1}
-    };
-    class Pair{
-        int row;
-        int col;
-        public Pair(int row, int col){
-            this.row=row;
-            this.col=col;
-        }
-    }
     public int numEnclaves(int[][] grid) {
-        Queue<Pair> q=new LinkedList<>();
-        int n=grid.length;
-        int m=grid[0].length;
-        int[][] visited = new int[n][m];
-        for(int i=0;i<n;i++){
-            for(int j=0;j<m;j++){
-                if(i==0 || j==0 || i==n-1 || j==m-1){
-                    if(grid[i][j]==1){
-                        q.add(new Pair(i,j));
-                        visited[i][j] = 1;
-                    }
+        for(int i = 0; i < grid.length; i++){
+            for(int j = 0; j < grid[0].length; j++){
+                if(i == 0 || j == 0 || i == grid.length-1 || j == grid[0].length-1){
+                    if(grid[i][j] == 1) dfs(grid,i,j);
                 }
             }
         }
-        while(!q.isEmpty()){
-            Pair curr=q.poll();
-            int row = curr.row;
-            int col = curr.col;
+        
+        int ans = 0;
 
-            for(int[] direction : directions){
-                int nr=direction[0] + row;
-                int nc=direction[1] + col;
-
-                if(nr>=0 && nc>=0 && nr<n && nc<m && visited[nr][nc]==0 && grid[nr][nc]==1){
-                    q.add(new Pair(nr,nc));
-                    visited[nr][nc]=1;
-                }
+        for(int i = 0; i < grid.length; i++){
+            for(int j = 0; j < grid[0].length; j++){
+                ans += grid[i][j];
             }
         }
-        int count=0;
-        for(int i=0;i<n;i++){
-            for(int j=0;j<m;j++){
-                if(grid[i][j]==1 && visited[i][j]==0) count++;
-            }
-        }
-        return count;
+        return ans;
     }
+    public void dfs(int[][] grid, int r, int c){
+        if(r < 0 || r >= grid.length || c < 0 || c >= grid[0].length || grid[r][c] == 0) return;
+
+        grid[r][c] = 0;
+
+        dfs(grid,r-1,c);
+        dfs(grid,r+1,c);
+        dfs(grid,r,c-1);
+        dfs(grid,r,c+1);
+    }
+
 }
