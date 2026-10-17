@@ -38,15 +38,16 @@ class Solution {
                         continue;
                     }
 
-                    if (obstacles[i][j] + mat[x][y] > k) {
+                    int obstacle = obstacles[i][j] + mat[x][y];
+                    if ( obstacle > k) {
                         continue;
                     }
 
-                    if (obstacles[x][y] <= obstacles[i][j] + mat[x][y]) {
+                    if (obstacles[x][y] <= obstacle) {
                         continue;
                     }
 
-                    obstacles[x][y] = obstacles[i][j] + mat[x][y];
+                    obstacles[x][y] = obstacle;
                     q.offer(new int[] { x, y });
                 }
             }
