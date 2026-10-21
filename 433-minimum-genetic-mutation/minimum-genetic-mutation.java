@@ -4,9 +4,10 @@ class Solution {
         Set<String> visited = new HashSet<>();
         Queue<String> q = new LinkedList<>();
 
-        if (!bankSet.contains(end)) return -1;
+        if (!bankSet.contains(end))
+            return -1;
 
-        char[] genes = {'A','C','G','T'};
+        char[] genes = { 'A', 'C', 'G', 'T' };
         q.offer(start);
         visited.add(start);
 
@@ -15,7 +16,8 @@ class Solution {
             int size = q.size();
             for (int i = 0; i < size; i++) {
                 String curr = q.poll();
-                if (curr.equals(end)) return steps;
+                if (curr.equals(end))
+                    return steps;
                 char[] arr = curr.toCharArray();
                 for (int j = 0; j < 8; j++) {
                     char old = arr[j];
