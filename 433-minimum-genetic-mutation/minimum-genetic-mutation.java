@@ -1,12 +1,15 @@
 class Solution {
     public int minMutation(String start, String end, String[] bank) {
         Set<String> bankSet = new HashSet<>(Arrays.asList(bank));
-        if (!bankSet.contains(end)) return -1;
-        char[] genes = {'A','C','G','T'};
-        Queue<String> q = new LinkedList<>();
-        q.offer(start);
         Set<String> visited = new HashSet<>();
+        Queue<String> q = new LinkedList<>();
+
+        if (!bankSet.contains(end)) return -1;
+
+        char[] genes = {'A','C','G','T'};
+        q.offer(start);
         visited.add(start);
+
         int steps = 0;
         while (!q.isEmpty()) {
             int size = q.size();
