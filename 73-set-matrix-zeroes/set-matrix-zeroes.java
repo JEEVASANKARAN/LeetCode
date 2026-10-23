@@ -1,23 +1,56 @@
 class Solution {
     public void setZeroes(int[][] matrix) {
-        boolean isZero = false;
+        int m = matrix.length;
+        int n = matrix[0].length;
+        boolean firstrow = false;
+        boolean firstcolumn = false;
 
-        for(int r = 0; r<matrix.length; r++){
-            if(matrix[r][0] == 0) isZero = true;
-
-            for(int c = 1; c < matrix[0].length; c++){
-                if(matrix[r][c] == 0){
-                    matrix[r][0] = 0;
-                    matrix[0][c] = 0;
+        for(int i =0;i<n;i++){
+            if(matrix[0][i] == 0){
+                firstrow =  true;
+                break;
+            }
+        }
+        for(int i =0;i<m;i++){
+            if(matrix[i][0]==0){
+                firstcolumn = true;
+                break;
+            }
+        }
+        for(int i=1;i<m;i++){
+            for(int j =1;j<n;j++){
+                if(matrix[i][j]==0){
+                    matrix[0][j] = 0;
+                    matrix[i][0] = 0;
                 }
             }
         }
-
-        for(int r = matrix.length-1; r >= 0; r--){
-            for(int c = matrix[0].length-1; c >= 1; c--){
-                if(matrix[0][c] == 0 || matrix[r][0] == 0) matrix[r][c] = 0;
+        for(int i =1;i<m;i++){
+            if(matrix[i][0]==0){
+                for(int j =1;j<n;j++){
+                    matrix[i][j]= 0;
+                }
             }
-            if(isZero) matrix[r][0] = 0;
         }
+         for(int i =1;i<n;i++){
+            if(matrix[0][i]==0){
+                for(int j =1;j<m;j++){
+                    matrix[j][i]= 0;
+                }
+            }
+        }
+        if(firstrow){
+            for(int i =0;i<n;i++){
+                matrix[0][i]=0;
+            }
+        }
+         if(firstcolumn){
+            for(int i =0;i<m;i++){
+                matrix[i][0]=0;
+            }
+        }
+
+        
+        
     }
 }
