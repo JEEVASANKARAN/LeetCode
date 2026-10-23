@@ -17,9 +17,7 @@ class Solution {
             else if(c==']'){
                 StringBuilder decoded = str.pop();
                 int count = rep.pop();
-                for(int i = 0; i < count; i++){
-                    decoded.append(currS);
-                }
+                decoded.repeat(currS,count);
                 currS=decoded;
             }
             else{
