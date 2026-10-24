@@ -8,7 +8,7 @@ class Solution {
         return count;
     }
     public void back(StringBuilder current, int[] digits, boolean[] visited){
-
+        if(current.length() > 3) return;
         if(current.length() == 3){
             if(current.charAt(0) != '0' && Integer.parseInt(current.toString())%2 == 0 ) count++;
             return;
