@@ -1,5 +1,5 @@
 class Solution {
-    long sum = 0;
+    long sum;
     int[][] directions = {
         {-1,0}, {1,0},
         {0,-1}, {0,1}
