@@ -11,9 +11,8 @@ class Solution {
 
         for(int i = 0; i < n - 1; i++) sb.append('#');
         sb.append('.');
-        String s = sb.toString();
 
-        for(int i = 1; i < m; i++) res[i] = s;
+        for(int i = 1; i < m; i++) res[i] = sb.toString();
 
         
         return res;
