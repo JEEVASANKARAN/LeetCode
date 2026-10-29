@@ -9,7 +9,7 @@ class Solution {
 
         int i =0;
         int sum =0;
-        int best = -1;
+        int best = 0;
 
         for(int j = 0; j < n; j++){
             sum += nums[j];
@@ -19,6 +19,6 @@ class Solution {
             }
             if(sum == k) best = Math.max(best,j-i+1);
         }
-        return best < 0 ? -1 : n - best;
+        return best == 0 ? -1 : n - best;
     }
 }
