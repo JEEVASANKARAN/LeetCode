@@ -11,7 +11,7 @@ class Solution {
         int sum =0;
         int best = -1;
 
-        for(int j = 0; j < nums.length; j++){
+        for(int j = 0; j < n; j++){
             sum += nums[j];
 
             while(sum > k){
