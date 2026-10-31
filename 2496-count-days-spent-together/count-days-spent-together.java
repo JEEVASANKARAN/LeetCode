@@ -1,5 +1,5 @@
 class Solution {
-    int[] days = {31,28,31,30,31,30,31,31,30,31,30,31};
+    int[] days = {0,31,28,31,30,31,30,31,31,30,31,30,31};
     public int countDaysTogether(String arriveAlice, String leaveAlice, String arriveBob, String leaveBob) {
         int aliceA = daysCal(arriveAlice);
         int aliceL = daysCal(leaveAlice);
@@ -18,7 +18,7 @@ class Solution {
 
         int res = d;
 
-        for(int i = 0; i < m - 1; i++) res += days[i];
+        for(int i = 0; i < m ; i++) res += days[i];
 
         return res;
     }
