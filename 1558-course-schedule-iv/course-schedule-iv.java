@@ -3,12 +3,12 @@ class Solution {
         List<List<Integer>> graph = new ArrayList<>();
         for(int i = 0; i < numCourses; i++) graph.add(new ArrayList<>());
 
-        int[] indegree = new int[numCourses];
+        //int[] indegree = new int[numCourses];
         for(int[] courses : prerequisites){
             int pre = courses[0];
             int course = courses[1];
 
-            indegree[course]++;
+            //indegree[course]++;
             graph.get(pre).add(course);
         }
 
