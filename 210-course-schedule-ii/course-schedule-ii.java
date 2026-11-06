@@ -26,13 +26,13 @@ class Solution {
         while(!q.isEmpty()){
 
             int curr = q.poll();
-            res[idx++] = curr;
 
             for(int num : graph.get(curr)){
                 indegree[num]--;
 
                 if(indegree[num] == 0) q.add(num);
             }
+            res[idx++] = curr;
         }
 
         if(idx != numCourses) return new int[0];
