@@ -1,32 +1,30 @@
 class Solution {
-    public int[] findRedundantConnection(int[][] edges) {
-        int n = edges.length;
-
-        List<List<Integer>> graph = new ArrayList<>();
-        for(int i = 0; i <= n; i++) graph.add(new ArrayList<>());
-
-        for(int[] edge : edges){
-            int u = edge[0], v = edge[1];
-            boolean[] visited = new boolean[n + 1];
-
-            if(dfs( u, v, graph, visited)) return edge;
-            graph.get(u).add(v);
-            graph.get(v).add(u);
+    private int findParent(int [] parent, int i){
+        if(parent[i] != i){
+            parent[i] = findParent(parent, parent[i]);
         }
-
-        return new int[0];
+        return parent[i];
     }
 
-    public boolean dfs(int node, int target, List<List<Integer>> graph, boolean[] visited){
-        if(node == target) return true;
+    public int[] findRedundantConnection(int[][] edges) {
+        ArrayList<int []> res = new ArrayList<>();
+        int n = edges.length;
+        int [] parent = new int [n+1];
 
-        visited[node] = true;
+        for(int i = 0 ; i<= n ; i++) parent[i] = i;
 
-        for(int neigh : graph.get(node)){
-            if(!visited[neigh]){
-                if(dfs( neigh, target, graph, visited)) return true;
+        for(int [] e : edges){
+            int u = e[0];
+            int v = e[1];
+            int pu = findParent(parent, u);
+            int pv = findParent(parent, v);
+            
+            if(pu != pv){
+                parent[pu] = pv;
             }
+            else res.add(e);
         }
-        return false;
+
+        return res.get(res.size()-1);
     }
 }
