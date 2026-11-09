@@ -11,6 +11,7 @@ class Solution {
         int min = Integer.MAX_VALUE;
         Queue<int[]> q = new LinkedList<>();
         q.add(new int[]{0,0,1});
+        grid[0][0] = 1;
 
         while(!q.isEmpty()){
             int[] curr = q.poll();
