@@ -5,10 +5,10 @@ class Solution {
         {1,-1}, {1,0}, {1,1}
     };
     public int shortestPathBinaryMatrix(int[][] grid) {
-        if(grid[0][0] == 1) return -1;
         int n = grid.length;
-        int min = Integer.MAX_VALUE;
+        if(grid[0][0] == 1 || grid[n-1][n-1] == 1) return -1;
 
+        int min = Integer.MAX_VALUE;
         Queue<int[]> q = new LinkedList<>();
         q.add(new int[]{0,0,1});
 
