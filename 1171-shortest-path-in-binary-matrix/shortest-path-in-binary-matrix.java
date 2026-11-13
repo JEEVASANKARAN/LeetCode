@@ -16,7 +16,6 @@ class Solution {
             int[] curr = q.poll();
             int r = curr[0], c = curr[1], step = curr[2];
 
-           // System.out.println(r + " " + c);
             if(r == n - 1 && c == n - 1) return step;
                
 
