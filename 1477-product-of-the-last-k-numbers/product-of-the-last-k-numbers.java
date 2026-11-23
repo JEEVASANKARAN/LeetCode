@@ -6,18 +6,22 @@ class ProductOfNumbers {
     }
     
     public void add(int num) {
-        list.add(num);
+        if(num == 0){
+            list.clear();
+            return;
+        }
+        if(list.size() == 0){
+            list.add(num);
+            return;
+        }
+        list.add(list.get(list.size() - 1) * num);
     }
     
     public int getProduct(int k) {
-        int prd = 1;
-        int i = list.size() - 1;
-        while(i > -1 && k-- > 0){
-            prd *= list.get(i--);
-            if(prd == 0) return 0;
-            //System.out.println(prd);
-        }
-        return prd;
+        int n = list.size();
+        if(k > n) return 0;
+        if(k == n) return list.get(n - 1);
+        return list.get(n - 1) / list.get(n - k - 1);
     }
 }
 
